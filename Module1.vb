@@ -1,30 +1,34 @@
 ﻿Module Module1
 
     Sub Main()
-        Dim str1, str2 As String
-        Dim mychar, nextchar As Char
-        Dim Counter As Integer
+        Dim str1, str2, str3, firstword, secword As String
+        Dim Sp As Integer
 
         str1 = ""
         str2 = ""
-        mychar = ""
-        nextchar = ""
-        Counter = 0
+        str3 = ""
+        firstword = ""
+        secword = ""
+        Sp = 0
 
-        Console.Write("Enter String: ")
-        str1 = Console.ReadLine
+        Console.Write("Enter string 1: ")
+        str1 = Console.ReadLine()
 
-        Console.Write("Enter character to remove: ")
-        mychar = Console.ReadLine
+        Console.Write("Enter String 2: ")
+        str2 = Console.ReadLine()
 
-        For Counter = 1 To Len(str1)
-            nextchar = Mid(str1, Counter, 1)
-            If nextchar <> mychar Then
-                str2 = str2 & nextchar
-            End If
-        Next
-        Console.WriteLine("Final String = " & str2)
+        Sp = InStr(str1, " ")
+        firstword = Left(str1, Sp - 1)
+
+        Sp = InStr(str2, " ")
+        secword = Right(str2, Len(str2) - Sp)
+
+        str3 = firstword & " " & secword
+        Console.WriteLine(str3)
+
         Console.ReadKey()
+
+
 
     End Sub
 
