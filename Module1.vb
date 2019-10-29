@@ -1,31 +1,51 @@
 ﻿Module Module1
 
     Sub Main()
-        Dim str1, str2 As String
-        Dim mychar, nextchar As Char
-        Dim Counter As Integer
+        Dim binarynumber As String
+        Dim nextchar As Char
+        Dim count As Integer
+        Dim denaryone As Integer
+        Dim denary As Integer
+        Dim ValidBinaryString As Boolean
 
-        str1 = ""
-        str2 = ""
-        mychar = ""
+        binarynumber = ""
         nextchar = ""
-        Counter = 0
+        count = 0
+        denaryone = 0
+        denary = 0
+        ValidBinaryString = True
 
-        Console.Write("Enter String: ")
-        str1 = Console.ReadLine
+        Console.Write("enter binary string: ")
+        binarynumber = Console.ReadLine
 
-        Console.Write("Enter character to remove: ")
-        mychar = Console.ReadLine
+        If Len(binarynumber) < 1 Or Len(binarynumber) > 8 Then
+            ValidBinaryString = False
 
-        For Counter = 1 To Len(str1)
-            nextchar = Mid(str1, Counter, 1)
-            If nextchar <> mychar Then
-                str2 = str2 & nextchar
+            If ValidBinaryString = True Then
+                For count = 1 To Len(binarynumber)
+                    nextchar = Mid(binarynumber, count, 1)
+                    If nextchar = "1" Or nextchar = "0" Then
+                        ValidBinaryString = True
+                    Else
+                        ValidBinaryString = False
+                    End If
+                Next
             End If
-        Next
-        Console.WriteLine("Final String = " & str2)
-        Console.ReadKey()
+        End If
 
+        If ValidBinaryString = False Then
+            Console.WriteLine("not a valid binary string")
+        End If
+
+        If ValidBinaryString = True Then
+            For count = Len(binarynumber) To 1 Step -1
+                denaryone = Mid(binarynumber, count, 1)
+                denary = denary + denaryone * (2 ^ (Len(binarynumber) - count))
+            Next
+            Console.WriteLine(binarynumber & " = " & denary)
+        End If
+
+        Console.ReadKey()
     End Sub
 
 End Module
